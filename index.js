@@ -6,7 +6,7 @@ const app = express();
 const members = {
     id: 1,
     name: 'name',
-    lastname: 'lastname'
+    lastname: 'lastname',
 }
 
 app.get('api/members', (req, res) => {
