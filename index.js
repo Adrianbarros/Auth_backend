@@ -1,11 +1,23 @@
 const express = require('express');
 const path = require('path')
 const app = express();
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+
+dotenv.config()
+
+///connect to DB
+mongoose.connect(process.env.DB_CONNECT,
+    { useNewUrlParser: true }, { useUnifiedTopology: true }, () =>
+    console.log('DB connected')
+)
 
 
-app.get('api/members', (req, res) => {
-    res.json(members);
-});
+//Import Routes
+const authRoute = require('./routes/auth');
+
+//route middleware
+app.use('/api/user', authRoute);
 
 //set a static folder
 app.use(express.static(path.join(__dirname, 'public')));
