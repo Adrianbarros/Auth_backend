@@ -4,6 +4,9 @@ const app = express();
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
+//sample post
+const postRoute = require('./routes/post')
+
 dotenv.config()
 //Import Routes
 const authRoute = require('./routes/auth');
@@ -18,6 +21,8 @@ app.use(express.json());
 
 //route middleware
 app.use('/api/user', authRoute);
+app.use('/api/post', postRoute);
+
 
 //set a static folder
 app.use(express.static(path.join(__dirname, 'public')));
